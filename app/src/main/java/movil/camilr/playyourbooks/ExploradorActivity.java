@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,14 +15,21 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import movil.camilr.playyourbooks.entities.FilePdf;
+
 public class ExploradorActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     TextView ruta;
+    TextView archivoAbierto;
     String directorioRaiz;
 
     ListView listaArchivosView;
@@ -35,6 +44,7 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_explorador);
 
         ruta = (TextView) findViewById(R.id.txt_ruta);
+        archivoAbierto = (TextView) findViewById(R.id.txt_archivo_abierto);
         listaArchivosView = (ListView) findViewById(R.id.list_archivos);
 
         directorioRaiz = Environment.getExternalStorageDirectory().getPath();
@@ -98,9 +108,46 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
 
         if(archivo.isFile()){
             String ubicacion = archivo.getAbsolutePath();
-            Intent intent = new Intent(this,MainActivity.class);
-            intent.putExtra("ubicacion",ubicacion);
-            startActivity(intent);
+
+
+            if(archivo==null){
+                archivoAbierto.setText("No se puede abrir este tipo de archivos");
+            }else {
+                   /* FileReader fr = new FileReader(archivo);
+                    BufferedReader br = new BufferedReader(fr);
+                    String textoArchivo =br.readLine();*/
+
+                //String[] formato = archivo.getName().split(".");
+
+                TextUtils.StringSplitter formato = new TextUtils.SimpleStringSplitter('.');
+                formato.setString(archivo.getName());
+
+
+                archivoAbierto.setText("getAbsolutePath: " + archivo.getAbsolutePath() + " getName: " + archivo.getName());
+
+                String nombre = "n";
+                String direccion = "d";
+                String dirNombre = "dn";
+
+                for (String s : formato){
+                    if (s.equals("pdf")){
+                        nombre = archivo.getName();
+                        direccion = archivo.getPath();
+                        dirNombre = archivo.getAbsolutePath();
+                    }
+                }
+
+                if (nombre!= "n" && direccion!="d") {
+                    FilePdf pdf = new FilePdf();
+                    pdf.setName(nombre);
+                    pdf.setDireccion(direccion);
+                    pdf.setDirName(dirNombre);
+
+                    pdf.save();
+                }
+
+
+            }
         }
         else{
             verArchivosDirectorio(listaRutaArchivos.get(position));
@@ -108,6 +155,8 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
         }
 
     }
+
+
 
 
 
