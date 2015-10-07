@@ -2,13 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="movil.camilr.playyourbooks" >
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <meta-data android:name="DATABASE" android:value="books.db" />
-    <meta-data android:name="VERSION" android:value="2" />
-    <meta-data android:name="QUERY_LOG" android:value="true" />
-    <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="movil.camilr.playyourbooks" />
+    <meta-data
+        android:name="DATABASE"
+        android:value="books.db" />
+    <meta-data
+        android:name="VERSION"
+        android:value="2" />
+    <meta-data
+        android:name="QUERY_LOG"
+        android:value="true" />
+    <meta-data
+        android:name="DOMAIN_PACKAGE_NAME"
+        android:value="movil.camilr.playyourbooks" />
 
     <application
         android:allowBackup="true"
@@ -27,6 +35,10 @@
         <activity
             android:name=".ExploradorActivity"
             android:label="@string/title_activity_explorador" >
+        </activity>
+        <activity
+            android:name=".OpenFileActivity"
+            android:label="@string/title_activity_open_file" >
         </activity>
     </application>
 

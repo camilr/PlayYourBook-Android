@@ -112,7 +112,7 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
             if(archivo==null){
                 ruta.setText("Archivo no compatible");
             }else {
-                   
+
                 TextUtils.StringSplitter formato = new TextUtils.SimpleStringSplitter('.');
                 formato.setString(archivo.getName());
 
@@ -143,8 +143,6 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
                 else {
                     Toast.makeText(this,"Archivo no compatible",Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         }
         else{
