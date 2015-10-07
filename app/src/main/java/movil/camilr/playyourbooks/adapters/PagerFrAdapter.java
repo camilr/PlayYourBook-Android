@@ -13,7 +13,6 @@ import movil.camilr.playyourbooks.PagerTitle;
  */
 public class PagerFrAdapter extends FragmentStatePagerAdapter {
 
-
     List<PagerTitle> data;
 
     public PagerFrAdapter(FragmentManager fm, List<PagerTitle> data) {

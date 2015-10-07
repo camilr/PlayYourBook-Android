@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ExploradorActivity extends AppCompatActivity {
+public class ExploradorActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     TextView ruta;
     String directorioRaiz;
@@ -40,6 +41,8 @@ public class ExploradorActivity extends AppCompatActivity {
 
         ruta.setText("Ruta: "+directorioRaiz);
         verArchivosDirectorio(directorioRaiz);
+
+        listaArchivosView.setOnItemClickListener(this);
 
     }
 
@@ -78,19 +81,24 @@ public class ExploradorActivity extends AppCompatActivity {
             }
         }
 
+        if (listaArchivos.length < 1){
+            listaNombreArchivos.add("No hay archivos");
+            listaRutaArchivos.add(rutaDirectorio);
+        }
+
         /*Convertir la lista en objetos para mostrarlos en la pantalla*/
         ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listaNombreArchivos);
         listaArchivosView.setAdapter(adapter);
 
     }
 
-    protected void onListItemClick(ListView listView, View v, int position, long id){
-
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         File archivo = new File(listaRutaArchivos.get(position));
 
         if(archivo.isFile()){
             String ubicacion = archivo.getAbsolutePath();
-            Intent intent = new Intent(this,InicioActivity.class);
+            Intent intent = new Intent(this,MainActivity.class);
             intent.putExtra("ubicacion",ubicacion);
             startActivity(intent);
         }

@@ -20,10 +20,6 @@
             android:name=".ExploradorActivity"
             android:label="@string/title_activity_explorador" >
         </activity>
-        <activity
-            android:name=".InicioActivity"
-            android:label="@string/title_activity_inicio" >
-        </activity>
     </application>
 
 </manifest>
