@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item
+        android:title="menu_add"
+        android:id="@+id/menu_addBook"
+        android:icon="@android:drawable/ic_input_add"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/menu_buscar"
+        android:title="buscar"
+        android:icon="@android:drawable/ic_search_category_default"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+    <item android:id="@+id/menu_config"
+        android:title="Configuracion"
+        android:icon="@android:drawable/ic_menu_more"
+        app:showAsAction="always">
+
+        <menu>
+            <item android:title="Configuracion"/>
+            <item android:title="Acerca de"/>
+
+        </menu>
+
+    </item>
+
+
+</menu>
