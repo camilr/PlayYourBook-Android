@@ -45,12 +45,17 @@ public class LocalFragment extends PagerTitle {
         listaLocalPdf = (ListView) v.findViewById(R.id.lista_local);
 
         getAllItems();
-        LocalAdapter adapter = new LocalAdapter(data,getContext());
-        listaLocalPdf.setAdapter(adapter);
+
 
         return v;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getAllItems();
+    }
 
     @Override
     public String getTitle() {
@@ -62,6 +67,9 @@ public class LocalFragment extends PagerTitle {
         FilePdf f = new FilePdf();
 
         data = f.listAll(FilePdf.class);
+
+        LocalAdapter adapter = new LocalAdapter(data,getContext());
+        listaLocalPdf.setAdapter(adapter);
 
     }
 }

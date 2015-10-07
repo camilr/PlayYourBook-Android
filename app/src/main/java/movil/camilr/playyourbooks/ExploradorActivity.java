@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,7 +30,6 @@ import movil.camilr.playyourbooks.entities.FilePdf;
 public class ExploradorActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     TextView ruta;
-    TextView archivoAbierto;
     String directorioRaiz;
 
     ListView listaArchivosView;
@@ -44,7 +44,6 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_explorador);
 
         ruta = (TextView) findViewById(R.id.txt_ruta);
-        archivoAbierto = (TextView) findViewById(R.id.txt_archivo_abierto);
         listaArchivosView = (ListView) findViewById(R.id.list_archivos);
 
         directorioRaiz = Environment.getExternalStorageDirectory().getPath();
@@ -111,19 +110,11 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
 
 
             if(archivo==null){
-                archivoAbierto.setText("No se puede abrir este tipo de archivos");
+                ruta.setText("Archivo no compatible");
             }else {
-                   /* FileReader fr = new FileReader(archivo);
-                    BufferedReader br = new BufferedReader(fr);
-                    String textoArchivo =br.readLine();*/
-
-                //String[] formato = archivo.getName().split(".");
-
+                   
                 TextUtils.StringSplitter formato = new TextUtils.SimpleStringSplitter('.');
                 formato.setString(archivo.getName());
-
-
-                archivoAbierto.setText("getAbsolutePath: " + archivo.getAbsolutePath() + " getName: " + archivo.getName());
 
                 String nombre = "n";
                 String direccion = "d";
@@ -134,6 +125,7 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
                         nombre = archivo.getName();
                         direccion = archivo.getPath();
                         dirNombre = archivo.getAbsolutePath();
+
                     }
                 }
 
@@ -144,6 +136,12 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
                     pdf.setDirName(dirNombre);
 
                     pdf.save();
+
+                    Intent intent = new Intent(this,MainActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(this,"Archivo no compatible",Toast.LENGTH_SHORT).show();
                 }
 
 
