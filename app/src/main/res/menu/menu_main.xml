@@ -16,17 +16,15 @@
         app:actionViewClass="android.support.v7.widget.SearchView"/>
 
     <item android:id="@+id/menu_config"
-        android:title="Configuracion"
+        android:title="Settings"
+        android:orderInCategory="100"
         android:icon="@android:drawable/ic_menu_more"
         app:showAsAction="always">
 
         <menu>
             <item android:title="Configuracion"/>
             <item android:title="Acerca de"/>
-
         </menu>
-
     </item>
-
 
 </menu>

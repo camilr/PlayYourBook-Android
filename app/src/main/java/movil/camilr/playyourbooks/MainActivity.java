@@ -1,9 +1,11 @@
 package movil.camilr.playyourbooks;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     ViewPager pager;
     List<PagerTitle> data;
 
+    Toolbar toolbar;
+    TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         pager = (ViewPager) findViewById(R.id.pager);
         data = new ArrayList<>();
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        setSupportActionBar(toolbar);
 
         LocalFragment fragmentLocal = new LocalFragment();
         RecientesFragment fragmentRecientes = new RecientesFragment();
@@ -36,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         PagerFrAdapter adapter = new PagerFrAdapter(getSupportFragmentManager(),data);
 
         pager.setAdapter(adapter);
+
+        tabLayout.setupWithViewPager(pager);
+        tabLayout.setTabsFromPagerAdapter(adapter);
     }
 
     @Override
@@ -63,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }

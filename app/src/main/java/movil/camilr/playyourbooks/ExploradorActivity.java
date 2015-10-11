@@ -108,9 +108,8 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
         if(archivo.isFile()){
             String ubicacion = archivo.getAbsolutePath();
 
-
             if(archivo==null){
-                ruta.setText("Archivo no compatible");
+                ruta.setText("No es posible abrir este archivo");
             }else {
 
                 TextUtils.StringSplitter formato = new TextUtils.SimpleStringSplitter('.');
@@ -125,7 +124,6 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
                         nombre = archivo.getName();
                         direccion = archivo.getPath();
                         dirNombre = archivo.getAbsolutePath();
-
                     }
                 }
 
