@@ -5,6 +5,7 @@
     >
 
     <TextView
+        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Menu"
         android:id="@+id/nombre_archivo_pdf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,6 +14,7 @@
         />
 
     <TextView
+        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
         android:id="@+id/direccion_archivo_pdf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

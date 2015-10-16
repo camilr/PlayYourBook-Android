@@ -1,11 +1,15 @@
 package movil.camilr.playyourbooks;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +18,15 @@ import movil.camilr.playyourbooks.adapters.PagerFrAdapter;
 import movil.camilr.playyourbooks.fragments.LocalFragment;
 import movil.camilr.playyourbooks.fragments.RecientesFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ViewPager pager;
     List<PagerTitle> data;
+
+    Toolbar toolbar;
+    TabLayout tabLayout;
+
+    FloatingActionButton floatbton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +36,30 @@ public class MainActivity extends AppCompatActivity {
         pager = (ViewPager) findViewById(R.id.pager);
         data = new ArrayList<>();
 
-        LocalFragment fragmentLocal = new LocalFragment();
-        RecientesFragment fragmentRecientes = new RecientesFragment();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-        data.add(fragmentRecientes);
+        setSupportActionBar(toolbar);
+
+        floatbton = (FloatingActionButton) findViewById(R.id.floatbtn);
+
+        floatbton.setOnClickListener(this);
+
+        LocalFragment fragmentLocal = new LocalFragment();
+
+
+       // RecientesFragment fragmentRecientes = new RecientesFragment();
+        //data.add(fragmentRecientes);
+
+
         data.add(fragmentLocal);
 
         PagerFrAdapter adapter = new PagerFrAdapter(getSupportFragmentManager(),data);
 
         pager.setAdapter(adapter);
+
+        tabLayout.setupWithViewPager(pager);
+        tabLayout.setTabsFromPagerAdapter(adapter);
     }
 
     @Override
@@ -50,11 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId())
         {
-            case R.id.menu_addBook:
-                Intent intent = new Intent(this, ExploradorActivity.class);
-                startActivity(intent);
-                break;
-
             case R.id.menu_buscar:
 
                 break;
@@ -63,8 +82,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
-
-
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this, ExploradorActivity.class);
+        startActivity(intent);
     }
 }

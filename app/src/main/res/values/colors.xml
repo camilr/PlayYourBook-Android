@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primario">#4852ff</color>
+    <!--
+    <color name="primario">#29bbff</color>
+    -->
+    <color name="primario">#43c5d1</color>
 
 </resources>

@@ -46,6 +46,8 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
         ruta = (TextView) findViewById(R.id.txt_ruta);
         listaArchivosView = (ListView) findViewById(R.id.list_archivos);
 
+       //Con esto saco la ruta "/storage/emulated/0" que es igual a la ruta "/sdcard"
+
         directorioRaiz = Environment.getExternalStorageDirectory().getPath();
 
         ruta.setText("Ruta: "+directorioRaiz);
@@ -108,9 +110,8 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
         if(archivo.isFile()){
             String ubicacion = archivo.getAbsolutePath();
 
-
             if(archivo==null){
-                ruta.setText("Archivo no compatible");
+                ruta.setText("No es posible abrir este archivo");
             }else {
 
                 TextUtils.StringSplitter formato = new TextUtils.SimpleStringSplitter('.');
@@ -125,7 +126,6 @@ public class ExploradorActivity extends AppCompatActivity implements AdapterView
                         nombre = archivo.getName();
                         direccion = archivo.getPath();
                         dirNombre = archivo.getAbsolutePath();
-
                     }
                 }
 

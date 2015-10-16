@@ -31,7 +31,7 @@ import movil.camilr.playyourbooks.entities.FilePdf;
  */
 public class LocalFragment extends PagerTitle implements AdapterView.OnItemClickListener {
 
-    public static final String POSICION_ARCHIVO = "posicion archivo";
+
 
     List<FilePdf> data;
     ListView listaLocalPdf;
@@ -116,8 +116,15 @@ public class LocalFragment extends PagerTitle implements AdapterView.OnItemClick
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-       Intent intent = new Intent(getContext(),OpenFileActivity.class);
-        intent.putExtra(POSICION_ARCHIVO,position);
+
+
+        Intent intent = new Intent(getContext(),OpenFileActivity.class);
+        intent.putExtra(OpenFileActivity.EXTRA_POSICION_ARCHIVO, position);
+        intent.putExtra(OpenFileActivity.EXTRA_DIR, data.get(position).getDirName());
+
+
+
+
         startActivity(intent);
     }
 }
